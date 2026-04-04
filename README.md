@@ -139,7 +139,7 @@ Note: As this project was developed using PlatformIO, the configuration options 
 
 
 ## Transparency
-AI tools were used for debugging specific implementation details (e.g. MQTT callbacks and FreeRTOS usage). All system design and integration decisions were made and verified independently.
+AI tools were used selectively for debugging and reference (e.g., MQTT callbacks, FreeRTOS usage, and general PCB/schematic guidance). All system design, architecture, and integration decisions were made and verified independently.
 
 
 
