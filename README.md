@@ -132,6 +132,11 @@ Note: As this project was developed using PlatformIO, the configuration options 
 
 ![MQTT Dashboard](./images/hiveMQ.png)
 
+### 5. Hardware Design (Task 1.2)
+*A custom 2-layer PCB layout and power/logic schematic designed in EasyEDA. The full schematic PDF is included in the repository root.*
+
+![PCB Layout](./images/pcb_layout.png)
+
 
 ## Transparency
 AI tools were used for debugging specific implementation details (e.g. MQTT callbacks and FreeRTOS usage). All system design and integration decisions were made and verified independently.
