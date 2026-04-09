@@ -121,21 +121,6 @@ void LedTask(void *pvParameter){
       last_logged_state = internal_bundle.state; // Update memory of the last log
     }
 
-    // --- THE LOGIC ---
-    // if (internal_bundle.state == 0) {
-    //     gpio_set_level(BLUE_PIN, 0);  // Blue = IDLE
-    //     vTaskDelay(pdMS_TO_TICKS(100));
-    // } else if (internal_bundle.state == 1) {
-    //     gpio_set_level(GREEN_PIN, 0); // Green = CHARGING
-    //     vTaskDelay(pdMS_TO_TICKS(100));
-    // } else if (internal_bundle.state == 2) {
-    //     //gpio_set_level(RED_PIN, 0);   // Red = FAULT - Blink(2Hz)
-    //     // vTaskDelay(pdMS_TO_TICKS(250));
-    //     // gpio_set_level(RED_PIN, 1); 
-    //     // vTaskDelay(pdMS_TO_TICKS(250));
-    //     // ----- Handled by blink timer -----
-    // }
-
   }
 }
 
@@ -176,7 +161,7 @@ void SensorTask(void *pvParameter){
         data.voltage = 220.0 + ((float)rand() / (float)(RAND_MAX)) * 20.0;
         data.current = (data.state == 1) ? 12.5 : 0.0;
 
-        // Send data to LED Task
+        // Send data to LED Task through queue
         xQueueSend(state_mailbox, &data, 0);
 
         // Send to cloud
@@ -203,7 +188,6 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
             break;
 
         case MQTT_EVENT_DATA:
-            // USE THESE NAMES: event->data and event->data_len
             if (strncmp(event->data, "START_CHARGE", event->data_len) == 0) {
                 ESP_LOGI(TAG, "Cloud Command: START");
                 int new_state = 1;
